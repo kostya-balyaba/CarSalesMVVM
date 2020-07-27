@@ -45,9 +45,9 @@ dependencies {
 
     // Room
     def roomVersion = "2.2.5"
-    implementation "androidx.room:room-runtime:$roomVersion"
+    api "androidx.room:room-runtime:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
-    implementation "androidx.room:room-rxjava2:$roomVersion"
+    api "androidx.room:room-rxjava2:$roomVersion"
 
     // Dagger
     def daggerVersion = '2.27'

@@ -1,4 +1,4 @@
-package com.nullgr.android.data.features.cars.mapper
+package com.balyaba.data.features.cars.mapper
 
 import com.balyaba.data.common.Mapper
 import com.balyaba.data.features.cars.dto.CarDto

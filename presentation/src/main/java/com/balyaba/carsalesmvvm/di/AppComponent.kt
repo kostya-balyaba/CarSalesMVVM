@@ -3,10 +3,7 @@ package com.balyaba.carsalesmvvm.di
 import android.content.Context
 import com.balyaba.carsalesmvvm.App
 import com.balyaba.carsalesmvvm.di.modules.ActivityModule
-import com.balyaba.data.di.ApiModule
-import com.balyaba.data.di.DataSourceModule
-import com.balyaba.data.di.DatabaseModule
-import com.balyaba.data.di.NetworkModule
+import com.balyaba.data.di.*
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -21,7 +18,9 @@ import javax.inject.Singleton
         NetworkModule::class,
         DatabaseModule::class,
         ApiModule::class,
-        DataSourceModule::class
+        DataSourceModule::class,
+        RepositoriesModule::class,
+        MappersModule::class
     ]
 )
 interface AppComponent : AndroidInjector<App> {
