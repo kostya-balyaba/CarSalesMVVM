@@ -50,7 +50,6 @@ dependencies {
     api "androidx.room:room-rxjava2:$roomVersion"
 
     // Dagger
-    def daggerVersion = '2.27'
     api "com.google.dagger:dagger:$daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 

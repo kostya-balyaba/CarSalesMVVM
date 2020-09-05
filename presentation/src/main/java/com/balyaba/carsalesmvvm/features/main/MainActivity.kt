@@ -1,11 +1,11 @@
-package com.balyaba.carsalesmvvm.presentation.main
+package com.balyaba.carsalesmvvm.features.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import com.balyaba.carsalesmvvm.R
-import com.balyaba.data.features.cars.api.CarsApi
 import dagger.android.AndroidInjection
-import javax.inject.Inject
 
 /**
  * Created by Unreal Mojo
@@ -14,12 +14,12 @@ import javax.inject.Inject
  */
 class MainActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var net: CarsApi
+    lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        navController = Navigation.findNavController(this, R.id.main_nav_host_fragment_container)
     }
 }

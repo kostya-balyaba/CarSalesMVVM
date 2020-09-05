@@ -7,6 +7,6 @@ import com.balyaba.repository.CarsRepository
  * @author Kostya Balyaba
  *         on 20.04.2020.
  */
-class ReadCarsList(private val carRepository: CarsRepository) {
+class GetCarsList(private val carRepository: CarsRepository) {
     operator fun invoke() = carRepository.getCarsList()
 }

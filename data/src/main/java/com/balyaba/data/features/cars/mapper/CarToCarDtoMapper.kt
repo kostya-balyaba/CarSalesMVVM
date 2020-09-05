@@ -12,7 +12,7 @@ class CarToCarDtoMapper @Inject constructor() : Mapper<Car, CarDto> {
                 id = id,
                 name = name,
                 engine = engine,
-                gearbox = gearbox.name,
+                gearbox = gearbox?.name,
                 carState = carState,
                 photoUrl = photoUrl,
                 safeDescription = safeDescription,

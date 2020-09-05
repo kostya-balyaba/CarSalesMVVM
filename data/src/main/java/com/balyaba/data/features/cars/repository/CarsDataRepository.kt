@@ -3,10 +3,10 @@ package com.balyaba.data.features.cars.repository
 import com.balyaba.data.common.Cache
 import com.balyaba.data.common.Mapper
 import com.balyaba.data.common.Remote
+import com.balyaba.data.features.cars.datasource.CarsDataSource
 import com.balyaba.data.features.cars.dto.CarDto
 import com.balyaba.entities.Car
 import com.balyaba.repository.CarsRepository
-import com.balyaba.data.features.cars.datasource.CarsDataSource
 import io.reactivex.Maybe
 import io.reactivex.Observable
 import javax.inject.Inject
@@ -19,7 +19,8 @@ class CarsDataRepository @Inject constructor(
 ) : CarsRepository {
 
     override fun getCarsList(): Observable<List<Car>> =
-        remoteSource.getCarsList()
+        Observable.concat(remoteSource.getCarsList(), cachedSource.getCarsList())
+            .take(1)
             .map(toDomainMapper::mapFromObjects)
             .doOnNext { carsList -> cachedSource.saveCarsList(toCarDtoMapper.mapFromObjects(carsList)) }
 
