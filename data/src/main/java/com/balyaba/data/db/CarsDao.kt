@@ -18,7 +18,7 @@ import io.reactivex.Observable
 interface CarsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun saveCars(carsList: List<CarCacheDto>): Completable
+    fun saveCars(carsList: List<CarCacheDto>)
 
     @Query("SELECT * FROM car")
     fun getCars(): Observable<List<CarCacheDto>>

@@ -20,7 +20,7 @@ class CarsCacheDataSource @Inject constructor(
         carsDao.getCars()
             .map(fromCacheMapper::mapFromObjects)
 
-    override fun saveCarsList(carsList: List<CarDto>): Completable =
+    override fun saveCarsList(carsList: List<CarDto>) =
         carsDao.saveCars(toCacheMapper.mapFromObjects(carsList))
 
     override fun getCarById(id: Long): Maybe<CarDto> {

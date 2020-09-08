@@ -3,11 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="ASD"
-        android:textAlignment="center"
-        android:textSize="24sp" />
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_purple"
+        android:clipToPadding="false" />
 
 </FrameLayout>

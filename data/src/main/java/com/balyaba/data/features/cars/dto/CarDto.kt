@@ -8,9 +8,9 @@ data class CarDto(
     @SerializedName("name") val name: String?,
     @SerializedName("engine") val engine: String?,
     @SerializedName("gearbox") val gearbox: String?,
-    @SerializedName("carState") val carState: String?,
-    @SerializedName("photoUrl") val photoUrl: String?,
-    @SerializedName("safeDescription") val safeDescription: String?,
-    @SerializedName("comfortDescription") val comfortDescription: String?,
+    @SerializedName("car_state") val carState: String?,
+    @SerializedName("photo") val photoUrl: String?,
+    @SerializedName("safe_description") val safeDescription: String?,
+    @SerializedName("comfort_description") val comfortDescription: String?,
     @SerializedName("description") val description: String?
 )

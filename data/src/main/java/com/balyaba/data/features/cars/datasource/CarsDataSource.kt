@@ -9,7 +9,7 @@ interface CarsDataSource {
 
     fun getCarsList(): Observable<List<CarDto>>
 
-    fun saveCarsList(carsList: List<CarDto>): Completable
+    fun saveCarsList(carsList: List<CarDto>)
 
     fun getCarById(id: Long): Maybe<CarDto>
 }

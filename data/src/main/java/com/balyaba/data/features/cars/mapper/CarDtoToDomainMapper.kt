@@ -13,8 +13,7 @@ class CarDtoToDomainMapper @Inject constructor() : Mapper<CarDto, Car> {
                 id = id,
                 name = name,
                 engine = engine,
-                gearbox = Car.Engine.valueOf(gearbox?.toUpperCase(Locale.ROOT)
-                    ?: Car.Engine.NOTHING.name),
+                gearbox = if (gearbox.equals("АВТОМАТ", true)) Car.Engine.AUTOMATIC else Car.Engine.MANUAL,
                 carState = carState,
                 photoUrl = photoUrl,
                 safeDescription = safeDescription,
