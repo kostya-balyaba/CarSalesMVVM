@@ -18,13 +18,20 @@ class CarsListViewModel @Inject constructor(
 
     fun obtainEvent(event: CarsListViewEvent) {
         when (event) {
-            CarsListViewEvent.LoadCarsList -> loadCarsList()
+            CarsListViewEvent.LoadCarsList -> {
+                publishLoadingState()
+                loadCarsList()
+            }
         }
     }
 
     override fun onCleared() {
         compositeDisposable.clear()
         super.onCleared()
+    }
+
+    private fun publishLoadingState() {
+        viewState.onNext(CarsListViewState.Loading)
     }
 
     private fun loadCarsList() {

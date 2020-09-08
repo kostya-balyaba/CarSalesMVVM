@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.balyaba.carsalesmvvm.R
+import com.balyaba.carsalesmvvm.common.ui.hide
+import com.balyaba.carsalesmvvm.common.ui.show
 import com.balyaba.carsalesmvvm.common.vm.injectViewModel
 import com.balyaba.carsalesmvvm.features.carslist.adapter.CarsListAdapter
 import dagger.android.support.AndroidSupportInjection
@@ -69,10 +71,13 @@ class CarsListFragment : Fragment() {
     private fun bindViewState(viewState: CarsListViewState) {
         when (viewState) {
             CarsListViewState.Loading -> {
-                Log.d("asd", "Loading")
+                recyclerView.hide()
+                progressBar.show()
             }
             is CarsListViewState.Success -> {
+                progressBar.hide()
                 adapter.addItems(viewState.data)
+                recyclerView.show()
             }
             is CarsListViewState.ShowError -> {
                 Log.d("asd", "Error")
