@@ -42,7 +42,7 @@ class CarsListViewModel @Inject constructor(
                 .subscribe({
                     viewState.onNext(CarsListViewState.Success(it))
                 }, {
-                    viewState.onNext(CarsListViewState.ShowError("some error"))
+                    viewState.onNext(CarsListViewState.ShowError(it.localizedMessage))
                 })
         )
     }

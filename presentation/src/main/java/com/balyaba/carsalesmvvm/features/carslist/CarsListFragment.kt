@@ -71,17 +71,34 @@ class CarsListFragment : Fragment() {
     private fun bindViewState(viewState: CarsListViewState) {
         when (viewState) {
             CarsListViewState.Loading -> {
-                recyclerView.hide()
-                progressBar.show()
+                showLoadingView()
             }
             is CarsListViewState.Success -> {
-                progressBar.hide()
                 adapter.addItems(viewState.data)
-                recyclerView.show()
+                showCarsListView()
             }
             is CarsListViewState.ShowError -> {
-                Log.d("asd", "Error")
+                errorTextView.text = viewState.message
+                showErrorView()
             }
         }
+    }
+
+    private fun showLoadingView() {
+        errorTextView.hide()
+        recyclerView.hide()
+        progressBar.show()
+    }
+
+    private fun showErrorView() {
+        recyclerView.hide()
+        progressBar.hide()
+        errorTextView.show()
+    }
+
+    private fun showCarsListView() {
+        progressBar.hide()
+        errorTextView.hide()
+        recyclerView.show()
     }
 }
