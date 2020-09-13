@@ -19,10 +19,18 @@ class CarsDataRepository @Inject constructor(
 ) : CarsRepository {
 
     override fun getCarsList(): Observable<List<Car>> =
-        Observable.concat(remoteSource.getCarsList(), cachedSource.getCarsList())
-            .take(1)
+        Observable.concat(remoteSource.getCarsList()
             .map(toDomainMapper::mapFromObjects)
-            .doOnNext { carsList -> cachedSource.saveCarsList(toCarDtoMapper.mapFromObjects(carsList)) }
+            .onErrorResumeNext { error: Throwable ->
+                Observable.empty()
+            }
+            .doOnNext { carsList ->
+                cachedSource.saveCarsList(toCarDtoMapper.mapFromObjects(carsList))
+            },
+            cachedSource.getCarsList().map {
+                toDomainMapper.mapFromObjects(it)
+            })
+            .take(1)
 
     override fun getCarById(id: Long): Maybe<Car> =
         cachedSource.getCarById(id)

@@ -14,6 +14,7 @@ import com.balyaba.carsalesmvvm.common.ui.hide
 import com.balyaba.carsalesmvvm.common.ui.show
 import com.balyaba.carsalesmvvm.common.vm.injectViewModel
 import com.balyaba.carsalesmvvm.features.carslist.adapter.CarsListAdapter
+import com.balyaba.carsalesmvvm.features.main.MainActivity
 import dagger.android.support.AndroidSupportInjection
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_cars_list.*
@@ -46,6 +47,7 @@ class CarsListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initUI()
         subscribeViewState()
+        subscribeAdapterClicks()
         viewModel.obtainEvent(CarsListViewEvent.LoadCarsList)
     }
 
@@ -55,8 +57,21 @@ class CarsListFragment : Fragment() {
     }
 
     private fun initUI() {
+        if (!adapter.hasObservers())
+            adapter.setHasStableIds(true)
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = adapter
+    }
+
+    private fun subscribeAdapterClicks() {
+        compositeDisposable.add(adapter.clickSubject
+            .subscribe({ car ->
+                (activity as MainActivity).navController.navigate(R.id.car_details_fragment, Bundle().apply { putParcelable("data", car) })
+            }, {
+                Log.d("asd", "error = " + it)
+            }, {
+                Log.d("asd", "onComplete")
+            }))
     }
 
     private fun subscribeViewState() {
@@ -74,7 +89,7 @@ class CarsListFragment : Fragment() {
                 showLoadingView()
             }
             is CarsListViewState.Success -> {
-                adapter.addItems(viewState.data)
+                adapter.replaceItems(viewState.data)
                 showCarsListView()
             }
             is CarsListViewState.ShowError -> {

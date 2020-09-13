@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 
 class CarsListViewModel @Inject constructor(
-    val getCarsListUseCase: GetCarsListUseCase
+    private val getCarsListUseCase: GetCarsListUseCase
 ) : ViewModel() {
 
     val viewState: BehaviorSubject<CarsListViewState> = BehaviorSubject.createDefault(CarsListViewState.Loading)
