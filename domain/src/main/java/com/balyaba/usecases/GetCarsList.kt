@@ -8,5 +8,5 @@ import com.balyaba.repository.CarsRepository
  *         on 20.04.2020.
  */
 class GetCarsList(private val carRepository: CarsRepository) {
-    operator fun invoke() = carRepository.getCarsList()
+    suspend fun getCarsList() = carRepository.getCarsList()
 }

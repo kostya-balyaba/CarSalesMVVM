@@ -3,11 +3,8 @@ package com.balyaba.data.di
 import com.balyaba.data.common.Mapper
 import com.balyaba.data.features.cars.cache.dto.CarCacheDto
 import com.balyaba.data.features.cars.dto.CarDto
+import com.balyaba.data.features.cars.mapper.*
 import com.balyaba.entities.Car
-import com.balyaba.data.features.cars.mapper.CarDtoFromCacheMapper
-import com.balyaba.data.features.cars.mapper.CarDtoToCacheMapper
-import com.balyaba.data.features.cars.mapper.CarDtoToDomainMapper
-import com.balyaba.data.features.cars.mapper.CarToCarDtoMapper
 
 import dagger.Binds
 import dagger.Module
@@ -24,6 +21,10 @@ abstract class MappersModule {
     @Binds
     @Singleton
     abstract fun bindCarDtoToCacheMapper(mapper: CarDtoToCacheMapper): Mapper<CarDto, CarCacheDto>
+
+    @Binds
+    @Singleton
+    abstract fun bindCarToCacheMapper(mapper: CarToCacheMapper): Mapper<Car, CarCacheDto>
 
     @Binds
     @Singleton

@@ -1,18 +1,19 @@
 package com.balyaba.data.features.cars.mapper
 
 import com.balyaba.data.common.Mapper
-import com.balyaba.data.features.cars.dto.CarDto
+import com.balyaba.data.features.cars.cache.dto.CarCacheDto
 import com.balyaba.entities.Car
 import javax.inject.Inject
 
-class CarDtoToDomainMapper @Inject constructor() : Mapper<CarDto, Car> {
-    override fun mapFromObject(source: CarDto): Car =
+
+class CarToCacheMapper @Inject constructor() : Mapper<Car, CarCacheDto> {
+    override fun mapFromObject(source: Car): CarCacheDto =
         with(source) {
-            Car(
+            CarCacheDto(
                 id = id,
                 name = name,
                 engine = engine,
-                gearbox = if (gearbox.equals("АВТОМАТ", true)) Car.Engine.AUTOMATIC else Car.Engine.MANUAL,
+                gearbox = gearbox.toString(),
                 carState = carState,
                 photoUrl = photoUrl,
                 safeDescription = safeDescription,

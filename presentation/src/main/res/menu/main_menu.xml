@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/carsListFragment"
+        android:icon="@drawable/round_dashboard_black_18"
+        android:orderInCategory="1"
+        android:title="Dashboard"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/favoritesFragment"
+        android:icon="@drawable/round_stars_black_18"
+        android:orderInCategory="2"
+        android:title="Favorite"
+        app:showAsAction="always" />
+
+
+    <item
+        android:id="@+id/aboutFragment"
+        android:icon="@drawable/round_read_more_black_18"
+        android:orderInCategory="2"
+        android:title="More"
+        app:showAsAction="always" />
+
+</menu>

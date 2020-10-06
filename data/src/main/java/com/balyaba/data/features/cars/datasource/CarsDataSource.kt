@@ -1,15 +1,14 @@
 package com.balyaba.data.features.cars.datasource
 
+import com.balyaba.data.features.cars.cache.dto.CarCacheDto
 import com.balyaba.data.features.cars.dto.CarDto
-import io.reactivex.Completable
-import io.reactivex.Maybe
-import io.reactivex.Observable
+import retrofit2.Call
 
 interface CarsDataSource {
 
-    fun getCarsList(): Observable<List<CarDto>>
+    suspend fun getCarsList(): List<CarDto>
 
-    fun saveCarsList(carsList: List<CarDto>): Completable
+    suspend fun saveCarsList(carsList: List<CarCacheDto>)
 
-    fun getCarById(id: Long): Maybe<CarDto>
+    suspend fun getCarById(id: Long): CarDto?
 }

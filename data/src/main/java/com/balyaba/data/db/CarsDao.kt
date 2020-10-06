@@ -5,9 +5,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.balyaba.data.features.cars.cache.dto.CarCacheDto
-import io.reactivex.Completable
-import io.reactivex.Maybe
-import io.reactivex.Observable
 
 /**
  * Created by Unreal Mojo
@@ -18,11 +15,11 @@ import io.reactivex.Observable
 interface CarsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun saveCars(carsList: List<CarCacheDto>): Completable
+    fun saveCars(carsList: List<CarCacheDto>)
 
     @Query("SELECT * FROM car")
-    fun getCars(): Observable<List<CarCacheDto>>
+    fun getCars(): List<CarCacheDto>
 
     @Query("SELECT * FROM car WHERE id = :id")
-    fun getCarById(id: Long): Maybe<CarCacheDto>
+    fun getCarById(id: Long): CarCacheDto?
 }

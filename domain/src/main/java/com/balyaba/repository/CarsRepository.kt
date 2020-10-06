@@ -1,8 +1,6 @@
 package com.balyaba.repository
 
 import com.balyaba.entities.Car
-import io.reactivex.Maybe
-import io.reactivex.Observable
 
 /**
  * Created by Unreal Mojo
@@ -10,7 +8,9 @@ import io.reactivex.Observable
  *         on 28.04.2020.
  */
 interface CarsRepository {
-    fun getCarsList(): Observable<List<Car>>
+    suspend fun getCarsList(): List<Car>
 
-    fun getCarById(id: Long): Maybe<Car>
+    suspend fun getCarById(id: Long): Car?
+
+    suspend fun saveCarsList(carsList: List<Car>)
 }

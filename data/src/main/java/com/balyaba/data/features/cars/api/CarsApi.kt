@@ -1,7 +1,6 @@
 package com.balyaba.data.features.cars.api
 
 import com.balyaba.data.features.cars.dto.CarDto
-import io.reactivex.Observable
 import retrofit2.http.GET
 
 /**
@@ -11,5 +10,5 @@ import retrofit2.http.GET
  */
 interface CarsApi {
     @GET("CarSalesMVVM/posts")
-    fun getCarsList(): Observable<List<CarDto>>
+    suspend fun getCarsList(): List<CarDto>
 }
