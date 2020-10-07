@@ -5,14 +5,14 @@ import com.balyaba.carsalesmvvm.common.vm.*
 import com.balyaba.carsalesmvvm.features.carslist.adapter.CarsListAdapter
 import com.balyaba.carsalesmvvm.features.carslist.models.*
 import com.balyaba.entities.Car
-import com.balyaba.repository.CarsRepository
+import com.balyaba.usecases.GetCarsListUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 
 class CarsListViewModel @Inject constructor(
-    private val carsRepository: CarsRepository
+    private val GetCarsListUseCase: GetCarsListUseCase
 ) : BaseViewModel<CarsListViewState, CarsListViewEffect, CarsListViewEvent>() {
 
     init {
@@ -25,7 +25,7 @@ class CarsListViewModel @Inject constructor(
                 viewState = CarsListViewState(Status.Loading, emptyList(), null)
             }
             work {
-                val carsList = withContext(Dispatchers.IO) { carsRepository.getCarsList() }
+                val carsList = withContext(Dispatchers.IO) { GetCarsListUseCase.getCarsList() }
                 viewState = if (carsList.isNullOrEmpty())
                     viewState.copy(status = Status.Empty, data = emptyList())
                 else

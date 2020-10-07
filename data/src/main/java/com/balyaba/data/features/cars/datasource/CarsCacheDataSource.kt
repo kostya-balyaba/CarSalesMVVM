@@ -14,7 +14,6 @@ class CarsCacheDataSource @Inject constructor(
 ) : CarsDataSource {
 
     override suspend fun getCarsList(): List<CarDto> {
-        val a = Thread.currentThread()
         val result = mutableListOf<CarDto>()
         val cachedCars = carsDao.getCars()
         return if (!cachedCars.isNullOrEmpty()) {
